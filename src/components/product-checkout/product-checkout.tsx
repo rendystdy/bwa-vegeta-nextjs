@@ -6,14 +6,15 @@ import Image from "next/legacy/image";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import CommonStepper from "@/components/common/common-stepper";
-import { ProductDetails } from "@/components/product/product-card";
 
 // utils
 import { formatNumber } from "@/lib/utils";
+import { Product } from "@prisma/client";
 
 interface CheckoutProps {
   isChecked?: boolean;
-  productDetails: ProductDetails;
+  productDetails: Product;
+  qty: number;
   onChangeItemCount: (count: number) => void;
   onDeleteItem: () => void;
 }
@@ -21,10 +22,11 @@ interface CheckoutProps {
 const ProductCheckout: React.FC<CheckoutProps> = ({
   isChecked,
   productDetails,
+  qty,
   onDeleteItem,
   onChangeItemCount,
 }: CheckoutProps) => {
-  const [itemCount, setItemCount] = useState(productDetails.itemCount || 1);
+  const [itemCount, setItemCount] = useState(qty || 1);
 
   return (
     <>

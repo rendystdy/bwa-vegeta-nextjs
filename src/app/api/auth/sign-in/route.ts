@@ -20,11 +20,10 @@ export async function POST(req: Request) {
       })
     }
 
-    // const data: Partial<User> = {
-    //   ...user,
-    //   password: undefined
-    // }
-    const data = user;
+    const data: Partial<User> = {
+      ...user,
+      password: undefined
+    }
     return Response({
       message: 'Sign in succesfully',
       data
